@@ -1,4 +1,17 @@
 <h1 class="md-4"><%= @category.title %><h1>
 
-<h2>Write your answer</h2>
+<h2 class="mt-5">Products</h2>
 
+<% @products.each do |product|%>
+  <article class="mb-3" id="product-<%= product.id %>">
+    <div class="card-body">
+      <section class="card-text">
+        <p>
+          <%= product.name %>
+        </p>
+      </section>
+
+      <%= link_to 'Show', category_product_path(@category, product), class: 'btn btn-info btn-sm' %>
+    </div>
+  </article>
+<% end %>
