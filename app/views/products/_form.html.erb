@@ -11,6 +11,66 @@
     </div>
   <% end %>
 
+  <div class="md-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :name %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= form.text_field :name, placeholder: "Name", class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="md-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :description %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= form.text_area :description, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="md-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :price %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= form.text_field :price, placeholder: "Price", class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="md-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :user_id %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= form.text_field :user_id, placeholder: "user_id", class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="md-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :category_id %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= form.text_field :category_id, placeholder: "category_id", class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="md-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :image %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= form.file_field :image %>
+    </div>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

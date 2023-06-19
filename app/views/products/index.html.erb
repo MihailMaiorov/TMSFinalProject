@@ -4,11 +4,27 @@
 
 <div id="products">
   <% @products.each do |product| %>
-    <%= render product %>
-    <p>
-      <%= link_to "Show this product", product %>
-    </p>
+ <article class="card mt-3">
+    <div class="card-body">
+      <h4><%= product.name %><h4>
+
+      <section class="card-text">
+        <time datetime="<%= product.formatted_create_at %>">
+          <small><%= product.formatted_create_at %></small>
+        <time>
+
+        <p class="my-2">
+          <%= product.description %>
+        </p>
+      </section>
+
+      <%= link_to 'Show', product_path(product), class: 'btn btn-primary' %> |
+      <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-secondary'%> |
+      <%= link_to 'Delete', product_path(product), class: 'btn btn-danger',
+        data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    </div>
+  </article>
   <% end %>
 </div>
 
-<%= link_to "New product", new_product_path %>
+
