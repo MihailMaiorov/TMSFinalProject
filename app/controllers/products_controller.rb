@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
-  before_action :set_product, only: %i[show edit update destroy]
+  before_action :set_category
+  before_action :set_product, except: %i[create new]
 
   def index
     @products = Product.all
@@ -14,11 +15,10 @@ class ProductsController < ApplicationController
   def edit; end
 
   def create
-    @product = Product.new(product_params)
-
+    @product = @category.products.build(product_create_params)
     respond_to do |format|
       if @product.save
-        format.html { redirect_to product_url(@product), notice: 'Product was successfully created.' }
+        format.html { redirect_to category_path(@category), notice: 'Product was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -50,11 +50,19 @@ class ProductsController < ApplicationController
 
   private
 
+  def set_category
+    @category = Category.find(params[:category_id])
+  end
+
   def set_product
-    @product = Product.find(params[:id])
+    @product = @category.products.find(params[:id])
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :price, :user_id, :category_id)
+    params.require(:product).permit(:name, :description, :price)
+  end
+
+  def product_create_params
+    product_params.merge(user_id: current_user.id)
   end
 end
