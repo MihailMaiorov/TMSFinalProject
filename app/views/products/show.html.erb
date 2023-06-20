@@ -4,22 +4,27 @@
 
 <h1 class="md-4"><%= @product.name %><h1>
 
-  <time datetime="<%= @product.formatted_create_at %>">
-    <%= @product.formatted_create_at %>
-  <time>
-
   <p class="lead my-3">
     <%= @product.description %>
   </p>
 
-<%= link_to 'Show', category_product_path(@product), class: 'btn btn-primary' %> |
-<%= link_to 'Edit', edit_category_product_path(@product), class: 'btn btn-secondary'%> |
-<%= link_to 'Delete', category_product_path(@product), class: 'btn btn-danger',
+  <p class="lead my-3">
+    <%= @product.price %>
+  </p>
+
+  <p class="lead my-3">
+    <time datetime="<%= @product.formatted_create_at %>">
+      <%= @product.formatted_create_at %>
+    <time>
+  </p>
+
+<%= link_to 'Edit', edit_category_product_path(@product.category_id), class: 'btn btn-secondary'%> |
+<%= link_to 'Delete', category_product_path(@product.category_id), class: 'btn btn-danger',
   data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
 
 <hr class="my-3">
 
 <div>
-  <%= link_to "Back to products", category_path %>
+  <%= link_to "Back to products", category_path(@product.category_id) %>
 </div>
 
