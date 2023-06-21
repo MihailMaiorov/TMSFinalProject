@@ -7,7 +7,7 @@
 <% @categories.each do |category| %>
   <article class="card mt-3">
     <div class="card-body">
-      <%= link_to "#{category.title}", category_path(category), class: 'btn btn-primary' %> |
+      <%= link_to "#{category.title}", category_path(category), class: 'btn btn-primary' %>
     </div>
   </article>
 <% end %>
