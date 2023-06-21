@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_category
   before_action :set_product, except: %i[create new]
+  before_action :authenticate_user!, only: %i[edit create update new destroy]
 
   def index
     @products = Product.all
