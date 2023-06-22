@@ -5,7 +5,7 @@ module Users
     protected
 
     def configure_sign_up_params
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar])
+      devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar, :locale])
     end
   end
 end
