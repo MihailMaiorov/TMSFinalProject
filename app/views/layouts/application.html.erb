@@ -32,5 +32,16 @@
     <% end %>
 
     <%= yield %>
+
+    <footer>
+      <% if user_signed_in? %>
+        <%= I18n.t('locale.change') %>
+        <% User::AVAILABLE_LOCALES.each do |locale| %>
+          <% next if locale == I18n.locale.to_s %>
+
+          <%= button_to locale, change_locale_path, params: { locale: locale }, method: :patch %>
+        <% end %>
+      <% end %>
+    </footer>
   </body>
 </html>

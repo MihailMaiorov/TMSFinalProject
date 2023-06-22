@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+footer {
+  height: 100px;
+  margin: 50px;
+}

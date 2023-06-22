@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     resources :products
   end
 
+  patch 'change_locale' => 'locales#change_locale'
+
   root 'categories#index'
 end
