@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
     @product = @category.products.build(product_create_params)
 
     if @product.save
-      redirect_to category_path(@category), notice: 'Product was successfully created.'
+      redirect_to category_path(@category), notice: t('.success')
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update(product_params)
-      redirect_to category_path(@category), notice: 'Product was successfully updated.'
+      redirect_to category_path(@category), notice: t('.success')
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,7 +36,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
 
-    redirect_to category_path(@category), notice: 'Product was successfully destroyed.'
+    redirect_to category_path(@category), notice: t('.success')
   end
 
   private

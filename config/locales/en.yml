@@ -30,5 +30,29 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
-  categories: Categories
+  categories:
+    index:
+      hello: Welcom to Marketplace
+      title: Categories
+    show:
+      title: Products
+  products:
+    destroy:
+      success: Product was successfully destroyed.
+    create:
+      success: Product was successfully created.
+    edit:
+      title: Editing product
+    update:
+      success: Product was successfully updated.
+  global:
+    button:
+      delete: Delete
+      edit: Edit
+      show: Show
+      submit: Submit
+    dialog:
+      you_sure: Are you sure?
+    flash:
+      already_signed_in: You are already signed in!
+      not_signed_in: You are not signed in!

@@ -1,7 +1,32 @@
 ru:
+  categories:
+    index:
+      hello: Добро пожаловать в Marketplace
+      title: Категории
+    show:
+      title: Товары
   devise:
     sessions:
       user:
         signed_out: Вы вышли из аккаунта
         signed_in: Вы вошли в аккаунт
-  categories: Категории
+  products:
+    destroy:
+      success: Товар удален!
+    create:
+      success: Товар создан!
+    edit:
+      title: Редактирование товара
+    update:
+      success: Товар изменен!
+  global:
+    button:
+      delete: Удалить
+      edit: Изменить
+      show: Показать
+      submit: Отправить
+    dialog:
+      you_sure: Вы уверены?
+    flash:
+      already_signed_in: Вы уже вошли в систему!
+      not_signed_in: Вы не вошли в систему!

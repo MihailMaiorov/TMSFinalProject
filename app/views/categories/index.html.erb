@@ -1,8 +1,6 @@
-<h1>Marketplace<h1>
+<h1><%= t('.hello') %><h1>
 
-<p>Welcom</p>
-
-<h1 class="md-4"><%= I18n.t(:categories) %><h1>
+<h1 class="md-4"><%= t('.title') %><h1>
 
 <% @categories.each do |category| %>
   <article class="card mt-3">

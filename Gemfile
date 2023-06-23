@@ -76,3 +76,4 @@ end
 gem 'devise'
 gem 'activeadmin'
 gem 'sassc-rails'
+gem 'rails-i18n'
