@@ -23,29 +23,29 @@
     </header>
 
     <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
-        <li class="dropdown">
-          <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
-            data: {"bs-toggle": 'dropdown'} do %>
-            <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
-            <%= t I18n.locale %>
+      <li class="dropdown">
+        <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
+          data: {"bs-toggle": 'dropdown'} do %>
+          <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
+          <%= t I18n.locale %>
+        <% end %>
+
+        <ul class="dropdown-menu">
+          <% I18n.available_locales.each do |locale| %>
+            <li>
+              <% if I18n.locale == locale %>
+                <%= tag.span t(locale), class: 'dropdown-item' %>
+              <% else %>
+                <%= link_to t(locale), url_for(locale: locale),
+                  class: 'dropdown-item' %>
+              <% end %>
+            </li>
           <% end %>
+        </ul>
+      </li>
+    </ul>
 
-          <ul class="dropdown-menu">
-            <% I18n.available_locales.each do |locale| %>
-              <li>
-                <% if I18n.locale == locale %>
-                  <%= tag.span t(locale), class: 'dropdown-item' %>
-                <% else %>
-                  <%= link_to t(locale), url_for(locale: locale),
-                    class: 'dropdown-item' %>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </li>
-      </ul>
-
-    <div>
+    <ul>
       <% if user_signed_in? %>
         <%= current_user.email %>
         <% if current_user.avatar.attached? %>
@@ -56,7 +56,7 @@
         <%= link_to "Log in", new_user_session_path %> |
         <%= link_to "Registration", new_user_registration_path %>
       <% end %>
-    </div>
+    </ul>
 
     <% if notice.present? %>
       <p class="notice"><%= notice %></p>
