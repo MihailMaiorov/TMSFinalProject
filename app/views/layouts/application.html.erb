@@ -22,6 +22,29 @@
       </div>
     </header>
 
+    <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+        <li class="dropdown">
+          <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
+            data: {"bs-toggle": 'dropdown'} do %>
+            <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
+            <%= t I18n.locale %>
+          <% end %>
+
+          <ul class="dropdown-menu">
+            <% I18n.available_locales.each do |locale| %>
+              <li>
+                <% if I18n.locale == locale %>
+                  <%= tag.span t(locale), class: 'dropdown-item' %>
+                <% else %>
+                  <%= link_to t(locale), url_for(locale: locale),
+                    class: 'dropdown-item' %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+
     <div>
       <% if user_signed_in? %>
         <%= current_user.email %>
@@ -44,15 +67,5 @@
 
     <%= yield %>
 
-    <footer>
-      <% if user_signed_in? %>
-        <%= I18n.t('locale.change') %>
-        <% User::AVAILABLE_LOCALES.each do |locale| %>
-          <% next if locale == I18n.locale.to_s %>
-
-          <%= button_to locale, change_locale_path, params: { locale: locale }, method: :patch %>
-        <% end %>
-      <% end %>
-    </footer>
   </body>
 </html>
