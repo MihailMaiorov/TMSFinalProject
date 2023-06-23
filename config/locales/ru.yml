@@ -1,7 +1,9 @@
 ru:
+  pages:
+    index:
+      title: Добро пожаловать в Marketplace
   categories:
     index:
-      hello: Добро пожаловать в Marketplace
       title: Категории
     show:
       title: Товары

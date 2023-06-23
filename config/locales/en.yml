@@ -30,9 +30,11 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  pages:
+    index:
+      title: Welcom to Marketplace
   categories:
     index:
-      hello: Welcom to Marketplace
       title: Categories
     show:
       title: Products

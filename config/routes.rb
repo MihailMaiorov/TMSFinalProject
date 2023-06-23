@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
     patch 'change_locale' => 'locales#change_locale'
 
-    root 'categories#index'
+    root 'pages#index'
   end
 end
