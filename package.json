@@ -1,0 +1,28 @@
+{
+  "name": "app",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.0",
+    "bootstrap-icons": "^1.10.5",
+    "controllers": "^0.0.2",
+    "esbuild": "^0.18.6",
+    "sass": "^1.63.6"
+  },
+  "version": "1.0.1",
+  "browserslist": [
+    "defaults"
+  ],
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
+  },
+  "scripts": {
+    "build:css:dev": "sass --style compressed ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build:css": "build:css:dev && postcss ./app/assets/builds/application.css --replace --use autoprefixer --no-map",
+    "build": "esbuild app/javascript/*.* --bundle --minify --outdir=app/assets/builds"
+  },
+  "packageManager": "yarn@3.6.0"
+}

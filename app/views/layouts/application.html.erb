@@ -6,8 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: 'all' %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
   <body>
@@ -19,10 +19,8 @@
             <li><%= link_to 'Categories', categories_path, class: 'nav-link px-2 text-white' %></li>
           </ul>
         </nav>
-      </div>
-    </header>
 
-    <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+        <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
       <li class="dropdown">
         <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
           data: {"bs-toggle": 'dropdown'} do %>
@@ -44,6 +42,11 @@
         </ul>
       </li>
     </ul>
+
+      </div>
+    </header>
+
+
 
     <ul>
       <% if user_signed_in? %>

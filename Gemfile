@@ -73,7 +73,11 @@ group :test do
   gem 'webdrivers'
 end
 
-gem 'devise'
 gem 'activeadmin'
-gem 'sassc-rails'
+gem 'bootstrap-sass'
+gem 'devise'
+gem 'jquery-rails'
 gem 'rails-i18n'
+gem 'sassc-rails'
+gem 'cssbundling-rails'
+gem 'jsbundling-rails'
