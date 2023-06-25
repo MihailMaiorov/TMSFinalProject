@@ -75,9 +75,9 @@ end
 
 gem 'activeadmin'
 gem 'bootstrap-sass'
+gem 'cssbundling-rails'
 gem 'devise'
 gem 'jquery-rails'
+gem 'jsbundling-rails'
 gem 'rails-i18n'
 gem 'sassc-rails'
-gem 'cssbundling-rails'
-gem 'jsbundling-rails'
