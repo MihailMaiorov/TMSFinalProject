@@ -1,4 +1,17 @@
 ru:
+  activerecord:
+    attributes:
+      product:
+        name: Название
+        price: Цена
+        description: Описание
+      user:
+        avatar: Аватар
+  layouts:
+    application:
+      home: Главная
+      categories: Категории
+      registration: Зарегистрироваться
   pages:
     index:
       title: Добро пожаловать в Marketplace
@@ -7,12 +20,22 @@ ru:
       title: Категории
     show:
       title: Товары
+      add: Добавить товар
   devise:
+    registrations:
+      new:
+        title: Регистрация
     sessions:
       user:
         signed_out: Вы вышли из аккаунта
         signed_in: Вы вошли в аккаунт
+
   products:
+    show:
+      price: Цена
+      seller: Продавец
+    new:
+      title: Новый товар
     destroy:
       success: Товар удален!
     create:
@@ -21,14 +44,16 @@ ru:
       title: Редактирование товара
     update:
       success: Товар изменен!
+  en: Английский
+  ru: Русский
   global:
     button:
       delete: Удалить
       edit: Изменить
       show: Показать
       submit: Отправить
-    dialog:
-      you_sure: Вы уверены?
-    flash:
-      already_signed_in: Вы уже вошли в систему!
-      not_signed_in: Вы не вошли в систему!
+      back: Назад
+      log_in: Войти
+      log_out: Выйти
+  dialog:
+    you_sure: Вы уверены?
