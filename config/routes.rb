@@ -7,8 +7,6 @@ Rails.application.routes.draw do
 
     resources :products
 
-    resources :categories, only: %i[index show]
-
     root 'pages#index'
   end
 end

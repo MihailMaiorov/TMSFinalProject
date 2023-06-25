@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1><%= t('.title') %></h1>
+<h1 class="current_category"><%= params[:category] %></h1>
 
 <div id="products">
   <% @products.each do |product| %>
@@ -9,19 +9,22 @@
       <h4><%= product.name %><h4>
 
       <section class="card-text">
-        <time datetime="<%= product.formatted_create_at %>">
-          <small><%= product.formatted_create_at %></small>
-        <time>
+        <p>
+          <% product.pictures.each do |picture| %>
+            <%= link_to image_tag(picture.variant(resize_to_limit: [100, 100])), picture %>
+          <% end %>
+        </p>
 
         <p class="my-2">
           <%= product.description %>
         </p>
+
+        <time datetime="<%= product.formatted_create_at %>">
+          <small><%= product.formatted_create_at %></small>
+        <time>
       </section>
 
-      <%= link_to 'Show', category_product_path(@product), class: 'btn btn-primary' %> |
-      <%= link_to 'Edit', edit_category_product_path(@product), class: 'btn btn-secondary'%> |
-      <%= link_to 'Delete', category_product_path(@product), class: 'btn btn-danger',
-        data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+      <%= link_to t('global.button.show'), product_path(product.id), class: 'btn btn-info btn-sm' %>
     </div>
   </article>
   <% end %>

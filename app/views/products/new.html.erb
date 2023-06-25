@@ -5,5 +5,5 @@
 <br>
 
 <div>
-  <%= link_to t('global.button.back'), categories_path, class: 'btn btn-primary' %>
+  <%= link_to t('global.button.back'), products_path(category_id: @product.category.id), class: 'btn btn-primary' %>
 </div>
