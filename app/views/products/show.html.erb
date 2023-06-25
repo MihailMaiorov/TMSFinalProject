@@ -47,9 +47,9 @@
 
 <hr class="my-3">
 
+  <% category = Category.find(@product.category_id)%>
   <div>
-    <%= link_to t('global.button.back'), products_path, class: 'btn btn-primary' %>
+    <%= link_to category.title, products_path(category: category.title), class: 'btn btn-primary' %>
   </div>
 
 </hr>
-
