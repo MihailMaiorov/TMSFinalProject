@@ -4,10 +4,6 @@ en:
       home: Home
       categories: Categories
       registration: Registration
-  devise:
-    registrations:
-      new:
-        title: Sign up
   pages:
     index:
       title: Welcom to Marketplace
@@ -18,6 +14,9 @@ en:
       title: Products
       add: Add product
   products:
+    form:
+      price: Price
+      name: Name
     show:
       price: Price
       seller: Seller
@@ -42,6 +41,7 @@ en:
       back: Back
       log_in: Log In
       log_out: Log Out
+      edit_user: Edit Account
   dialog:
     you_sure: Are you sure?
 

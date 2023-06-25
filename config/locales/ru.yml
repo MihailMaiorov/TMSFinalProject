@@ -21,16 +21,10 @@ ru:
     show:
       title: Товары
       add: Добавить товар
-  devise:
-    registrations:
-      new:
-        title: Регистрация
-    sessions:
-      user:
-        signed_out: Вы вышли из аккаунта
-        signed_in: Вы вошли в аккаунт
-
   products:
+    form:
+      price: Цена
+      name: Название
     show:
       price: Цена
       seller: Продавец
@@ -55,5 +49,6 @@ ru:
       back: Назад
       log_in: Войти
       log_out: Выйти
+      edit_user: Редактировать аккаунт
   dialog:
     you_sure: Вы уверены?

@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  AVAILABLE_LOCALES = %w[en ru].freeze
-
   has_many :products, dependent: :destroy
 
   has_one_attached :avatar

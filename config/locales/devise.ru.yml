@@ -100,7 +100,7 @@ ru:
         cancel_my_account: Удалить учетную запись
         currently_waiting_confirmation_for_email: 'Ожидается подтверждение адреса E-mail: %{email}'
         leave_blank_if_you_don_t_want_to_change_it: оставьте поле пустым, если не хотите его менять
-        title: Редактировать %{resource}
+        title: Редактировать
         unhappy: Разочарованы?
         update: Обновить
         we_need_your_current_password_to_confirm_your_changes: введите текущий пароль для подтверждения изменений
@@ -130,7 +130,7 @@ ru:
         sign_up: Регистрация
       minimum_password_length:
         few: "(минимум %{count} знака)"
-        many: "(минимум %{count} знаков)"
+        many: "знаков минимум"
         one: "(минимум %{count} знак)"
         other: "(минимум %{count} знаков)"
     unlocks:
