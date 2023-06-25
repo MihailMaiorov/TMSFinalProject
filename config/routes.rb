@@ -5,9 +5,9 @@ Rails.application.routes.draw do
 
     devise_for :users, controllers: { registrations: 'users/registrations' }
 
-    resources :categories, only: %i[index show] do
-      resources :products
-    end
+    resources :products
+
+    resources :categories, only: %i[index show]
 
     root 'pages#index'
   end

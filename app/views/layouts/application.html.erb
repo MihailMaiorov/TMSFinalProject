@@ -11,56 +11,66 @@
   </head>
 
   <body>
+
     <header class="p-3 bg-dark text-white">
-      <div class="container">
-        <nav class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+
+      <nav class="navbar navbar-default">
+
+        <div class="container">
+
+          <div class="navbar-header">
             <li><%= link_to t('.home'), root_path, class: 'nav-link px-2 text-white' %></li>
             <li><%= link_to t('.categories'), categories_path, class: 'nav-link px-2 text-white' %></li>
-          </ul>
-        </nav>
+          </div>
 
-        <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
-      <li class="dropdown">
-        <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
-          data: {"bs-toggle": 'dropdown'} do %>
-          <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
-          <%= t I18n.locale %>
-        <% end %>
-
-        <ul class="dropdown-menu">
-          <% I18n.available_locales.each do |locale| %>
-            <li>
-              <% if I18n.locale == locale %>
-                <%= tag.span t(locale), class: 'dropdown-item' %>
-              <% else %>
-                <%= link_to t(locale), url_for(locale: locale),
-                  class: 'dropdown-item' %>
+          <ul class="nav navbar-nav">
+            <% if user_signed_in? %>
+              <%= current_user.email %>
+              <% if current_user.avatar.attached? %>
+                <%= image_tag(current_user.avatar.variant(resize_and_pad: [100, 100])) %>
               <% end %>
+              <%= link_to t('global.button.log_out'), destroy_user_session_path, data: { 'turbo-method': :delete } %>
+              <%= link_to t('global.button.edit_user'), edit_user_registration_path %>
+            <% else %>
+              <%= link_to t('global.button.log_in'), new_user_session_path %>
+              <%= link_to t('.registration'), new_user_registration_path %>
+            <% end %>
+          </ul>
+
+          <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+            <li class="dropdown">
+              <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
+                data: {"bs-toggle": 'dropdown'} do %>
+                <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
+                <%= t I18n.locale %>
+              <% end %>
+
+              <ul class="dropdown-menu">
+                <% I18n.available_locales.each do |locale| %>
+                  <li>
+                    <% if I18n.locale == locale %>
+                      <%= tag.span t(locale), class: 'dropdown-item' %>
+                    <% else %>
+                      <%= link_to t(locale), url_for(locale: locale),
+                        class: 'dropdown-item' %>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
             </li>
-          <% end %>
-        </ul>
-      </li>
-    </ul>
+          </ul>
 
-      </div>
+          <ul class="nav navbar-nav navbar-right">
+            <% if user_signed_in? %>
+              <li><%= link_to 'Add product', new_product_path, class: 'btn btn-danger' %></li>
+            <% end %>
+          </ul>
+
+        </div>
+
+      </nav>
+
     </header>
-
-
-
-    <ul>
-      <% if user_signed_in? %>
-        <%= current_user.email %>
-        <% if current_user.avatar.attached? %>
-          <%= image_tag(current_user.avatar.variant(resize_and_pad: [100, 100])) %>
-        <% end %>
-        <%= link_to t('global.button.log_out'), destroy_user_session_path, data: { 'turbo-method': :delete } %> |
-        <%= link_to t('global.button.edit_user'), edit_user_registration_path %>
-      <% else %>
-        <%= link_to t('global.button.log_in'), new_user_session_path %> |
-        <%= link_to t('.registration'), new_user_registration_path %>
-      <% end %>
-    </ul>
 
     <% if notice.present? %>
       <p class="notice"><%= notice %></p>
