@@ -28,7 +28,7 @@
   <p class="lead my-3">
     <h2>
       <%= t('.seller') %>
-      <%= @product.user.email %>
+      <%= link_to @product.user.email, user_path(@product.user.id)%>
      </h2>
   </p>
 
