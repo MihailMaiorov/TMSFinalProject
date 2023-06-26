@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, except: %i[create new index]
+  before_action :set_categories, only: %i[new edit]
   before_action :authenticate_user!, only: %i[edit create update new destroy]
 
   def index
@@ -15,12 +16,9 @@ class ProductsController < ApplicationController
 
   def new
     @product = current_user.products.build
-    @categories = Category.all.map { |c| [c.title, c.id] }
   end
 
-  def edit
-    @categories = Category.all.map { |c| [c.title, c.id] }
-  end
+  def edit; end
 
   def create
     @product = current_user.products.build(product_params)
@@ -50,6 +48,10 @@ class ProductsController < ApplicationController
   end
 
   private
+
+  def set_categories
+    @categories = Category.all.map { |c| [c.title, c.id] }
+  end
 
   def set_product
     @product = Product.find(params[:id])

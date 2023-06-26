@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_25_234554) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_25_234142) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -89,10 +89,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_25_234554) do
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
     t.text "comment"
+    t.string "reviewable_type", null: false
+    t.bigint "reviewable_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.integer "product_id"
+    t.index ["reviewable_type", "reviewable_id"], name: "index_reviews_on_reviewable"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,4 +114,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_25_234554) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "users"
+  add_foreign_key "reviews", "users"
 end
