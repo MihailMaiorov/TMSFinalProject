@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
     devise_for :users, controllers: { registrations: 'users/registrations' }
 
-    resources :products
+    resources :products do
+      resources :reviews
+    end
 
     root 'pages#index'
   end
