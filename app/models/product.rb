@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_many :reviews, as: :reviewable
   belongs_to :user
   belongs_to :category
   has_many_attached :pictures

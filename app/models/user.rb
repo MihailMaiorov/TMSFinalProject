@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   has_many :products, dependent: :destroy
+  has_many :reviews, as: :reviewable
 
   has_one_attached :avatar
 
