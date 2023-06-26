@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
     @product.category_id = params[:category_id]
 
     if @product.save
-      redirect_to categories_path, notice: t('.success')
+      redirect_to products_path, notice: t('.success')
     else
       render :new, status: :unprocessable_entity
     end
@@ -46,7 +46,7 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
 
-    redirect_to categories_path, notice: t('.success')
+    redirect_to products_path, notice: t('.success')
   end
 
   private
