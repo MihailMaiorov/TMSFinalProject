@@ -45,6 +45,60 @@
     <% end %>
   <% end %>
 
+<p class="lead my-3">Reviews</p>
+
+<%= form_with(model: [@product, @review]) do |form| %>
+  <% if @product.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+        <% @product.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="md-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :comment %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= form.text_area :comment, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="md-3 row">
+    <div class="col-sm-2 col-form-label">
+      <%= form.label :rating %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= form.text_field :rating, placeholder: 'Rating', class: 'form-control' %>
+    </div>
+  </div>
+
+  <div>
+    <%= form.submit t('global.button.submit'), class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<% @reviews.each do |review| %>
+  <article class="card mt-3">
+    <div class="card-body">
+      <h4><%= review.rating %><h4>
+
+        <p class="my-2">
+          <%= review.comment %>
+        </p>
+
+    </div>
+  </article>
+<% end %>
+
+
 <hr class="my-3">
 
   <% category = Category.find(@product.category_id)%>

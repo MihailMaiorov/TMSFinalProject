@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
     devise_for :users, controllers: { registrations: 'users/registrations' }
 
-    resources :products do
-      resources :reviews
+    resources :products, :users do
+      resources :reviews, only: %i[new index create]
     end
 
     root 'pages#index'
