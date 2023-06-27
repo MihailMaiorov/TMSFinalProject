@@ -19,12 +19,13 @@
         <div class="container">
 
           <div class="navbar-header">
-            <li><%= link_to t('.home'), root_path, class: 'nav-link px-2 text-white' %></li>
+            <%= link_to t('.home'), root_path, class: 'nav-link px-2 text-white' %>
 
             <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
               <li class="dropdown">
                 <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
                   data: {"bs-toggle": 'dropdown'} do %>
+                  <%= tag.div '', class: "flag #{t('.categories')}-flag mt-1" %>
                   <%= t('.categories') %>
                 <% end %>
 

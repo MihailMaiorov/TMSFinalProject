@@ -1,10 +1,10 @@
-<h1 class="md-4"><%= @user.email %><h1>
-
 <% if current_user.avatar.attached? %>
-  <%= image_tag(current_user.avatar.variant(resize_and_pad: [100, 100])) %>
+  <%= image_tag(current_user.avatar.variant(resize_and_pad: [200, 200])) %>
 <% end %>
 
-<p class="lead my-3">Reviews</p>
+<h1 class="md-4"><%= @user.email %><h1>
+
+<h2 class="lead my-3">Add reviews</h2>
 
 <%= form_with(model: [@user, @review]) do |form| %>
   <% if @user.errors.any? %>
@@ -25,7 +25,7 @@
     </div>
 
     <div class="col-sm-10">
-      <%= form.text_area :comment, class: 'form-control' %>
+      <%= form.text_area :comment, placeholder: 'Text', class: 'form-control' %>
     </div>
   </div>
 
@@ -42,16 +42,27 @@
   <div>
     <%= form.submit t('global.button.submit'), class: 'btn btn-primary' %>
   </div>
+
 <% end %>
 
 <% @reviews.each do |review| %>
   <article class="card mt-3">
     <div class="card-body">
-      <h4><%= review.rating %><h4>
+      <h4>Rating: <%= review.rating %><h4>
 
-        <p class="my-2">
-          <%= review.comment %>
-        </p>
+      <p class="my-2">
+        Text: <%= review.comment %>
+      </p>
+
+      <p class="lead my-3">
+          <time datetime="<%= review.formatted_create_at %>">
+            <%= review.formatted_create_at %>
+          <time>
+      </p>
+
+      <p class="my-2">
+        Author: <%= User.find(review.user_id).email %>
+      </p>
 
     </div>
   </article>
