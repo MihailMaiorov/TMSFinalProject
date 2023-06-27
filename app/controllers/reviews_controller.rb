@@ -1,10 +1,10 @@
 class ReviewsController < ApplicationController
   def new
-    @review = reviewable.reviews.new
+    @review = reviewable.reviews.build
   end
 
   def create
-    @review = reviewable.reviews.new(review_params)
+    @review = reviewable.reviews.build(review_params)
 
     if @review.save
       redirect_to products_path

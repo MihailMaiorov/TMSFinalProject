@@ -94,6 +94,12 @@
           <%= review.comment %>
         </p>
 
+        <p class="lead my-3">
+            <time datetime="<%= review.formatted_create_at %>">
+              <%= review.formatted_create_at %>
+            <time>
+        </p>
+
     </div>
   </article>
 <% end %>
