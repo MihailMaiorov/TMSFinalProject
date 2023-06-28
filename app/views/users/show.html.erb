@@ -58,8 +58,8 @@
       </p>
 
       <p class="lead my-3">
-          <time datetime="<%= review.formatted_create_at %>">
-            <%= review.formatted_create_at %>
+          <time datetime="<%= review.formatted_updated_at %>">
+            <%= review.formatted_updated_at %>
           <time>
       </p>
 
@@ -71,7 +71,7 @@
   </article>
 
   <% if review.user_id == current_user.id %>
-    <%= link_to t('global.button.edit'), edit_user_review_path(@user), class: 'btn btn-secondary'%> |
+    <%= link_to t('global.button.edit'), edit_user_review_path(@user, review), class: 'btn btn-secondary'%> |
     <%= link_to t('global.button.delete'), user_review_path(@user), class: 'btn btn-danger',
       data: { turbo_method: :delete, turbo_confirm: t('dialog.you_sure') } %>
   <% end %>

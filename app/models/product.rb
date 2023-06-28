@@ -10,7 +10,7 @@ class Product < ApplicationRecord
 
   validates :pictures, blob: { content_type: %w[image/png image/jpg image/jpeg], size_range: 1..5.megabytes }
 
-  def formatted_create_at
-    I18n.l created_at, format: :long
+  def formatted_updated_at
+    I18n.l updated_at, format: :long
   end
 end

@@ -20,7 +20,7 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      redirect_to product_path(@reviewable), notice: t('.success')
+      redirect_to polymorphic_url(@reviewable), notice: t('.success')
     else
       render :edit, status: :unprocessable_entity
     end

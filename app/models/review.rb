@@ -4,7 +4,7 @@ class Review < ApplicationRecord
   validates :comment, presence: true, length: { maximum: 300 }
   validates :rating, presence: true, numericality: { in: 1..5 }
 
-  def formatted_create_at
-    I18n.l created_at, format: :long
+  def formatted_updated_at
+    I18n.l updated_at, format: :long
   end
 end

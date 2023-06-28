@@ -33,8 +33,8 @@
   </p>
 
   <p class="lead my-3">
-    <time datetime="<%= @product.formatted_create_at %>">
-      <%= @product.formatted_create_at %>
+    <time datetime="<%= @product.formatted_updated_at %>">
+      <%= @product.formatted_updated_at %>
     <time>
   </p>
   <% if user_signed_in? %>
@@ -100,8 +100,8 @@
         </p>
 
         <p class="lead my-3">
-            <time datetime="<%= review.formatted_create_at %>">
-              <%= review.formatted_create_at %>
+            <time datetime="<%= review.formatted_updated_at %>">
+              <%= review.formatted_updated_at %>
             <time>
         </p>
 
