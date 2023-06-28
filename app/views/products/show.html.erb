@@ -45,72 +45,73 @@
     <% end %>
   <% end %>
 
-<p class="lead my-3">Reviews</p>
+  <% if user_signed_in? %>
+    <p class="lead my-3">Reviews</p>
 
-<%= form_with(model: [@product, @review]) do |form| %>
-  <% if @product.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+    <%= form_with(model: [@product, @review]) do |form| %>
+      <% if @product.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
-      <ul>
-        <% @product.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+          <ul>
+            <% @product.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="md-3 row">
+        <div class="col-sm-2 col-form-label">
+          <%= form.label :comment %>
+        </div>
+
+        <div class="col-sm-10">
+          <%= form.text_area :comment, placeholder: 'Text', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="md-3 row">
+        <div class="col-sm-2 col-form-label">
+          <%= form.label :rating %>
+        </div>
+
+        <div class="col-sm-10">
+          <%= form.text_field :rating, placeholder: 'Rating', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div>
+        <%= form.submit t('global.button.submit'), class: 'btn btn-primary' %>
+      </div>
+    <% end %>
   <% end %>
 
-  <div class="md-3 row">
-    <div class="col-sm-2 col-form-label">
-      <%= form.label :comment %>
-    </div>
+  <% @reviews.each do |review| %>
+    <article class="card mt-3">
+      <div class="card-body">
 
-    <div class="col-sm-10">
-      <%= form.text_area :comment, placeholder: 'Text', class: 'form-control' %>
-    </div>
-  </div>
+        <p class="my-2">
+          Rating: <%= review.rating %>
+        </p>
 
-  <div class="md-3 row">
-    <div class="col-sm-2 col-form-label">
-      <%= form.label :rating %>
-    </div>
+        <p class="my-3">
+          Text: <%= review.comment %>
+        </p>
 
-    <div class="col-sm-10">
-      <%= form.text_field :rating, placeholder: 'Rating', class: 'form-control' %>
-    </div>
-  </div>
+        <p class="lead my-3">
+            <time datetime="<%= review.formatted_create_at %>">
+              <%= review.formatted_create_at %>
+            <time>
+        </p>
 
-  <div>
-    <%= form.submit t('global.button.submit'), class: 'btn btn-primary' %>
-  </div>
-<% end %>
+        <p class="my-2">
+          Author: <%= User.find(review.user_id).email %>
+        </p>
 
-<% @reviews.each do |review| %>
-  <article class="card mt-3">
-    <div class="card-body">
-
-      <p class="my-2">
-        Rating: <%= review.rating %>
-      </p>
-
-      <p class="my-3">
-        Text: <%= review.comment %>
-      </p>
-
-      <p class="lead my-3">
-          <time datetime="<%= review.formatted_create_at %>">
-            <%= review.formatted_create_at %>
-          <time>
-      </p>
-
-      <p class="my-2">
-        Author: <%= User.find(review.user_id).email %>
-      </p>
-
-    </div>
-  </article>
-<% end %>
-
+      </div>
+    </article>
+  <% end %>
 
 <hr class="my-3">
 
