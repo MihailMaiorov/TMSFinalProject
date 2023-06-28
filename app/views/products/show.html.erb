@@ -46,7 +46,7 @@
   <% end %>
 
   <% if user_signed_in? %>
-    <p class="lead my-3">Reviews</p>
+    <p class="lead my-3">Add reviews</p>
 
     <%= form_with(model: [@product, @review]) do |form| %>
       <% if @product.errors.any? %>
