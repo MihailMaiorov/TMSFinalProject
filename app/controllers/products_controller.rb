@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  before_action :set_product, except: %i[create new index]
+  before_action :set_product, only: %i[edit update show destroy]
   before_action :set_categories, only: %i[new edit]
   before_action :authenticate_user!, only: %i[edit create update new destroy]
 
