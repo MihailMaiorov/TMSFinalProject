@@ -29,15 +29,13 @@ class ProductsController < ApplicationController
     @product.category_id = params[:category_id]
 
     if @product.save
-      redirect_to products_path, notice: t('.success')
+      redirect_to product_path(@product), notice: t('.success')
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
-    @product.category_id = params[:category_id]
-
     if @product.update(product_params)
       redirect_to product_path(@product), notice: t('.success')
     else

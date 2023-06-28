@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     devise_for :users, controllers: { registrations: 'users/registrations' }
 
     resources :products, :users do
-      resources :reviews, only: %i[new index create edit destroy]
+      resources :reviews
     end
 
     root 'pages#index'
