@@ -32,10 +32,6 @@ class ReviewsController < ApplicationController
     @review = @reviewable.reviews.find(params[:id])
   end
 
-  def set_product
-    @product = Product.find(params[:product_id])
-  end
-
   def set_reviewable
     return @reviewable = Product.find(params[:product_id]) if params[:product_id]
 
