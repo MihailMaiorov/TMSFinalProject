@@ -19,7 +19,7 @@ class CartItemsController < ApplicationController
   end
 
   def product
-    @product ||= Product.find(params[:product_id])
+    @product = Product.find(params[:product_id])
   end
 
   helper_method :products

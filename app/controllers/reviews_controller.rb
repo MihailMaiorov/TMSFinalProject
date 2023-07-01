@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_reviewable
-  before_action :set_review, only: %i[edit update destroy]
+  before_action :set_review, only: %i[edit update archive]
 
   def edit; end
 
@@ -20,6 +20,12 @@ class ReviewsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def archive
+    @review.update!(archived: true)
+
+    redirect_to polymorphic_url(@reviewable), notice: t('.success')
   end
 
   private

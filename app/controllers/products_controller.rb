@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 
   def show
     @review = @product.reviews.build
-    @reviews = @product.reviews.includes(:user).order updated_at: :desc
+    @reviews = @product.reviews.active.includes(:user).order updated_at: :desc
   end
 
   def new
@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
   end
 
   def change_status
-    @product.update(status: 'out of stock')
+    @product.update!(status: 'out of stock')
 
     redirect_to products_path, notice: t('.success')
   end
@@ -55,7 +55,7 @@ class ProductsController < ApplicationController
   end
 
   def set_product
-    @product ||= Product.find(params[:id])
+    @product = Product.find(params[:id])
   end
 
   def product_params

@@ -6,10 +6,13 @@ Rails.application.routes.draw do
     devise_for :users, controllers: { registrations: 'users/registrations' }
 
     resources :products, :users do
-      resources :reviews
+      resources :reviews do
+        post :archive, on: :member
+      end
 
       post :change_status, on: :member
     end
+
 
     resources :carts, only: %i[destroy show] do
       resources :cart_items, only: %i[destroy create]
