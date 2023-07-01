@@ -5,10 +5,10 @@ class ProductsController < ApplicationController
 
   def index
     if params[:category].blank?
-      @products = Product.all
+      @products = Product.in_stock
     else
       @category_id = Category.find_by(title: params[:category]).id
-      @products = Product.where(category_id: @category_id).order(updated_at: :desc)
+      @products = Product.in_stock.where(category_id: @category_id).order(updated_at: :desc)
     end
   end
 

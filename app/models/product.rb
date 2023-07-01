@@ -10,6 +10,8 @@ class Product < ApplicationRecord
 
   validates :pictures, blob: { content_type: %w[image/png image/jpg image/jpeg], size_range: 1..5.megabytes }
 
+  scope :in_stock, -> { where(status: 'in stock') }
+
   def formatted_updated_at
     I18n.l updated_at, format: :long
   end
