@@ -9,5 +9,5 @@ class ApplicationController < ActionController::Base
     current_cart.cart_items
   end
 
-  helper_method :current_cart, :currernt_items
+  helper_method :current_cart, :current_items
 end
