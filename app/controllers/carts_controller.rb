@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   def show
+    @products ||= current_items.joins(:product).all
 
   end
 
@@ -7,5 +8,9 @@ class CartsController < ApplicationController
     current_cart.destroy
 
     render :show
+  end
+
+  def products
+    # binding.pry
   end
 end
