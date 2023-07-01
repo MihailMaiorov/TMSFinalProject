@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
     @review = @reviewable.reviews.build(review_params)
 
     if @review.save
-      redirect_to product_path(@reviewable)
+      redirect_to polymorphic_url(@reviewable)
     else
       render 'pages/index', status: :unprocessable_entity
     end
