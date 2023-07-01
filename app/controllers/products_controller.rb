@@ -42,8 +42,8 @@ class ProductsController < ApplicationController
     end
   end
 
-  def destroy
-    @product.destroy
+  def change_status
+    @product.update(status: 'out of stock')
 
     redirect_to products_path, notice: t('.success')
   end
