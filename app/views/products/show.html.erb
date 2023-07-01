@@ -48,8 +48,8 @@
 
     <% if @product.user_id == current_user.id %>
       <%= link_to t('global.button.edit'), edit_product_path(@product), class: 'btn btn-secondary'%> |
-      <%= link_to t('global.button.delete'), product_path(@product), class: 'btn btn-danger',
-        data: { turbo_method: :delete, turbo_confirm: t('dialog.you_sure') } %>
+      <%= link_to t('global.button.delete'), change_status_product_path(@product), class: 'btn btn-danger',
+        data: { turbo_method: :post, turbo_confirm: t('dialog.you_sure') } %>
     <% end %>
 
     <p class="lead my-3">Add reviews</p>

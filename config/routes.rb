@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
     resources :products, :users do
       resources :reviews
+
+      post :change_status, on: :member
     end
 
     resources :carts, only: %i[destroy show] do
