@@ -9,6 +9,10 @@ Rails.application.routes.draw do
       resources :reviews
     end
 
+    resources :cart, only: %i[destroy show] do
+      resources :cart_items, only: %i[destroy create]
+    end
+
     root 'pages#index'
   end
 end
