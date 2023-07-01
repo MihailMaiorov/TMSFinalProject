@@ -28,7 +28,7 @@
   <p class="lead my-3">
     <h2>
       <%= t('.seller') %>
-      <%= link_to @product.user.email, user_path(@product.user.id)%>
+      <%= link_to @product.user.email, user_path(@product.user_id)%>
      </h2>
   </p>
 
@@ -37,15 +37,21 @@
       <%= @product.formatted_updated_at %>
     <time>
   </p>
+
   <% if user_signed_in? %>
+    <%= form_with(url: cart_cart_items_path(current_cart.id)) do |f| %>
+      <%= f.hidden_field :product_id, value: @product.id %>
+      <%= f.hidden_field :cart_id, value: current_cart.id %>
+      <%= f.number_field :quantity, value: 0, min: 1 %>
+      <%= f.submit "Add To Cart" %>
+    <% end %>
+
     <% if @product.user_id == current_user.id %>
       <%= link_to t('global.button.edit'), edit_product_path(@product), class: 'btn btn-secondary'%> |
       <%= link_to t('global.button.delete'), product_path(@product), class: 'btn btn-danger',
         data: { turbo_method: :delete, turbo_confirm: t('dialog.you_sure') } %>
     <% end %>
-  <% end %>
 
-  <% if user_signed_in? %>
     <p class="lead my-3">Add reviews</p>
 
     <%= form_with(model: [@product, @review]) do |form| %>
@@ -106,7 +112,7 @@
         </p>
 
         <p class="my-2">
-          Author: <%= User.find(review.user_id).email %>
+          Author: <%= review.user.email %>
         </p>
 
       </div>
@@ -121,9 +127,8 @@
 
 <hr class="my-3">
 
-  <% category = Category.find(@product.category_id)%>
   <div>
-    <%= link_to category.title, products_path(category: category.title), class: 'btn btn-primary' %>
+    <%= link_to t('global.button.back'), :back, class: 'btn btn-primary' %>
   </div>
 
 </hr>

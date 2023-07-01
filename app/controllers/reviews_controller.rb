@@ -1,10 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_reviewable
-  before_action :set_review, only: %i[edit update show destroy]
-
-  def new
-    @review = @reviewable.reviews.build
-  end
+  before_action :set_review, only: %i[edit update destroy]
 
   def edit; end
 

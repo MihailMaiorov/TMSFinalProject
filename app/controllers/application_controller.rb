@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  EMPTY_CART = 0
+
   include Internationalization
 
   def current_cart
@@ -6,8 +8,14 @@ class ApplicationController < ActionController::Base
   end
 
   def current_items
-    current_cart.cart_items
+    current_cart.cart_items.includes(:product)
   end
 
-  helper_method :current_cart, :current_items
+  def cart_total
+    return EMPTY_CART if current_items.nil?
+
+    current_items.sum(&:quantity)
+  end
+
+  helper_method :current_cart, :current_items, :cart_total
 end

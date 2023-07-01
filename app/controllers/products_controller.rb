@@ -13,9 +13,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find params[:id]
     @review = @product.reviews.build
-    @reviews = @product.reviews.order updated_at: :desc
+    @reviews = @product.reviews.includes(:user).order updated_at: :desc
   end
 
   def new
@@ -56,7 +55,7 @@ class ProductsController < ApplicationController
   end
 
   def set_product
-    @product = Product.find(params[:id])
+    @product ||= Product.find(params[:id])
   end
 
   def product_params
