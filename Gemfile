@@ -53,6 +53,7 @@ group :development, :test do
   gem 'activestorage-validator'
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'pry'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -80,4 +81,5 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'jsbundling-rails'
 gem 'rails-i18n'
+gem 'rolify'
 gem 'sassc-rails'

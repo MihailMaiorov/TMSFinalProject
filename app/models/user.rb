@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  rolify
   has_many :products, dependent: :destroy
   has_many :reviews, as: :reviewable
   has_one :cart
