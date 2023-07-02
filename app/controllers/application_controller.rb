@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Internationalization
+  include Pundit::Authorization
 
   EMPTY_CART = 0
 
