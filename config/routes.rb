@@ -13,7 +13,6 @@ Rails.application.routes.draw do
       post :change_status, on: :member
     end
 
-
     resources :carts, only: %i[destroy show] do
       resources :cart_items, only: %i[destroy create]
     end

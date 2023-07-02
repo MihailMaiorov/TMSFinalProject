@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[edit update show destroy change_status]
-  before_action :set_categories, only: %i[new edit]
+  before_action :set_categories, only: %i[new edit create]
   before_action :authenticate_user!, only: %i[edit create update new destroy]
 
   def index
