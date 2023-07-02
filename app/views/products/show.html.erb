@@ -46,7 +46,7 @@
       <%= f.submit "Add To Cart" %>
     <% end %>
 
-    <% if @product.user_id == current_user.id %>
+    <% if policy(@product).update? %>
       <%= link_to t('global.button.edit'), edit_product_path(@product), class: 'btn btn-secondary'%> |
       <%= link_to t('global.button.delete'), change_status_product_path(@product), class: 'btn btn-danger',
         data: { turbo_method: :post, turbo_confirm: t('dialog.you_sure') } %>
@@ -118,10 +118,12 @@
       </div>
     </article>
 
-    <% if review.user_id == current_user.id %>
-      <%= link_to t('global.button.edit'), edit_product_review_path(@product, review), class: 'btn btn-secondary'%> |
-      <%= link_to t('global.button.delete'), archive_product_review_path(@product, review.id), class: 'btn btn-danger',
-        data: { turbo_method: :post, turbo_confirm: t('dialog.you_sure') } %>
+    <% if user_signed_in? %>
+      <% if policy(review).update? %>
+        <%= link_to t('global.button.edit'), edit_product_review_path(@product, review), class: 'btn btn-secondary'%> |
+        <%= link_to t('global.button.delete'), archive_product_review_path(@product, review.id), class: 'btn btn-danger',
+          data: { turbo_method: :post, turbo_confirm: t('dialog.you_sure') } %>
+      <% end %>
     <% end %>
   <% end %>
 

@@ -2,10 +2,14 @@ class ReviewsController < ApplicationController
   before_action :set_reviewable
   before_action :set_review, only: %i[edit update archive]
 
-  def edit; end
+  def edit
+    authorize @review
+  end
 
   def create
     @review = @reviewable.reviews.build(review_create_params)
+
+    authorize @review
 
     if @review.save
       redirect_to polymorphic_url(@reviewable)
@@ -15,6 +19,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    authorize @review
+
     if @review.update(review_update_params)
       redirect_to polymorphic_url(@reviewable), notice: t('.success')
     else
@@ -23,6 +29,8 @@ class ReviewsController < ApplicationController
   end
 
   def archive
+    authorize @review
+
     @review.update!(archived: true)
 
     redirect_to polymorphic_url(@reviewable), notice: t('.success')

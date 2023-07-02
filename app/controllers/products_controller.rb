@@ -21,11 +21,14 @@ class ProductsController < ApplicationController
     @product = current_user.products.build
   end
 
-  def edit; end
+  def edit
+    authorize @product
+  end
 
   def create
-    @product = current_user.products.build(product_params)
-    @product.category_id = params[:category_id]
+    @product = current_user.products.build(product_create_params)
+
+    authorize @product
 
     if @product.save
       redirect_to product_path(@product), notice: t('.success')
@@ -35,7 +38,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if @product.update(product_params)
+    if @product.update(product_update_params)
       redirect_to product_path(@product), notice: t('.success')
     else
       render :edit, status: :unprocessable_entity
@@ -43,6 +46,8 @@ class ProductsController < ApplicationController
   end
 
   def change_status
+    authorize @product
+
     @product.update!(status: 'out of stock')
 
     redirect_to products_path, notice: t('.success')
@@ -58,7 +63,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def product_params
+  def product_create_params
+    params.require(:product).permit(:name, :description, :user_id, :price, pictures: []).merge(category_id: params[:category_id])
+  end
+
+  def product_update_params
     params.require(:product).permit(:name, :description, :user_id, :price, pictures: [])
   end
 end
