@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
 
   def index
     if params[:category].blank?
-      @products = Product.in_stock
+      @products = Product.in_stock.order(updated_at: :desc)
     else
       @category_id = Category.find_by(title: params[:category]).id
       @products = Product.in_stock.where(category_id: @category_id).order(updated_at: :desc)
@@ -59,6 +59,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :description, :user_id, :price, :category_id, pictures: [])
+    params.require(:product).permit(:name, :description, :user_id, :price, pictures: [])
   end
 end

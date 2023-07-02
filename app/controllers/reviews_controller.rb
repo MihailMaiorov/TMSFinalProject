@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
   def edit; end
 
   def create
-    @review = @reviewable.reviews.build(review_params)
+    @review = @reviewable.reviews.build(review_create_params)
 
     if @review.save
       redirect_to polymorphic_url(@reviewable)
@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    if @review.update(review_params)
+    if @review.update(review_update_params)
       redirect_to polymorphic_url(@reviewable), notice: t('.success')
     else
       render :edit, status: :unprocessable_entity
@@ -40,7 +40,11 @@ class ReviewsController < ApplicationController
     @reviewable = User.find(params[:user_id]) if params[:user_id]
   end
 
-  def review_params
+  def review_update_params
+    params.require(:review).permit(:rating, :comment, :reviewable_type, :reviewable_id)
+  end
+
+  def review_create_params
     params.require(:review).permit(:rating, :comment, :reviewable_type, :reviewable_id).merge(user_id: current_user.id)
   end
 end
