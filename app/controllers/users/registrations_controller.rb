@@ -5,7 +5,8 @@ module Users
     def create
       super do |user|
         if user.persisted?
-          user.add_role(params[:role]) unless params[:role].empty?
+          UserMailer.perform(user).deliver_later
+          user.add_role(params[:role]) if params[:role].present?
         end
       end
     end

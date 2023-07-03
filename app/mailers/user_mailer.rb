@@ -5,6 +5,6 @@ class UserMailer < ApplicationMailer
 
   def perform(user)
     @user = user
-    mail(to: @user.email, subject: 'New review')
+    mail(to: @user.email, subject: 'You have successfully registered!')
   end
 end

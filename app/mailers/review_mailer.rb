@@ -3,10 +3,11 @@ class ReviewMailer < ApplicationMailer
 
   sidekiq_options queue: :reviews
 
-  def perform(user, review)
+  def perform(reviewable, review, user)
     @review = review
     @user = user
+    @reviewable = reviewable
 
-    mail(to: @user.email, subject: 'New review')
+    mail(to: User.find(@reviewable.user_id).email, subject: 'You have new review')
   end
 end

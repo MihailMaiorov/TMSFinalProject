@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_reviewable
   before_action :set_review, only: %i[edit update archive]
+  after_action :send_mail, only: :create
 
   def edit
     authorize @review
@@ -54,5 +55,9 @@ class ReviewsController < ApplicationController
 
   def review_create_params
     params.require(:review).permit(:rating, :comment, :reviewable_type, :reviewable_id).merge(user_id: current_user.id)
+  end
+
+  def send_mail
+    ReviewMailer.perform(@reviewable, @review, current_user).deliver_later
   end
 end
