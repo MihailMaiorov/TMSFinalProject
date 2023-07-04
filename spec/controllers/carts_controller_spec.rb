@@ -5,7 +5,7 @@ describe CartsController, type: :request do
   let!(:category) { create :category }
   let!(:product) { create :product }
   let!(:cart) { create :cart, user: user }
-  let!(:cart_item) { create :cart_item, cart: cart}
+  let!(:cart_item) { create :cart_item, cart: cart }
 
   describe 'GET #show' do
     it 'render show view' do

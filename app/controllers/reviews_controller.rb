@@ -50,11 +50,11 @@ class ReviewsController < ApplicationController
   end
 
   def review_update_params
-    params.require(:review).permit(:rating, :comment, :reviewable_type, :reviewable_id)
+    params.require(:review).permit(:rating, :comment)
   end
 
   def review_create_params
-    params.require(:review).permit(:rating, :comment, :reviewable_type, :reviewable_id).merge(user_id: current_user.id)
+    params.require(:review).permit(:rating, :comment).merge(user_id: current_user.id)
   end
 
   def send_mail
