@@ -26,7 +26,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = current_user.products.build(product_create_params)
+    @category_id = Category.find(params[:category_id]).id
+    @product = current_user.products.build(product_params.merge(category_id: @category_id))
 
     authorize @product
 
@@ -38,7 +39,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if @product.update(product_update_params)
+    if @product.update(product_params)
       redirect_to product_path(@product), notice: t('.success')
     else
       render :edit, status: :unprocessable_entity
@@ -63,11 +64,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
-  def product_create_params
-    params.require(:product).permit(:name, :description, :user_id, :price, pictures: []).merge(category_id: params[:category_id])
-  end
-
-  def product_update_params
-    params.require(:product).permit(:name, :description, :user_id, :price, pictures: [])
+  def product_params
+    params.require(:product).permit(:name, :description, :price, pictures: [])
   end
 end
