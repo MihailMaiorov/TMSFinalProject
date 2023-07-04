@@ -9630,3 +9630,4 @@ bootstrap/dist/js/bootstrap.esm.js:
     *)
 */
 //# sourceMappingURL=/assets/application.js.map
+import * as bootstrap from "bootstrap"
