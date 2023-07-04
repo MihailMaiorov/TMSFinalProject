@@ -21,6 +21,4 @@ class CartItemsController < ApplicationController
   def product
     @product = Product.find(params[:product_id])
   end
-
-  helper_method :products
 end

@@ -7,9 +7,12 @@ describe CartsController, type: :request do
   let!(:cart) { create :cart, user: user }
   let!(:cart_item) { create :cart_item, cart: cart }
 
+  before do
+    sign_in(user)
+  end
+
   describe 'GET #show' do
     it 'render show view' do
-      sign_in(user)
       get cart_path(id: cart.id)
       expect(response.body).to include(product.name)
     end
@@ -20,13 +23,11 @@ describe CartsController, type: :request do
 
     context 'delete from cart' do
       it 'delete product from cart' do
-        sign_in(user)
 
         expect { subject }.to change { user.reload.cart.present? }.to(false)
       end
 
       it 'delete product from cart_items' do
-        sign_in(user)
 
         expect { subject }.to change(user.cart.cart_items, :count).by(-1)
       end

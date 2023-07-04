@@ -91,5 +91,8 @@ test:
 production:
   <<: *default
   database: Marketplace_production
-  username: Marketplace
-  password: <%= ENV["MARKETPLACE_DATABASE_PASSWORD"] %>
+  username: mihail
+  password: 111111
+  port: 5432
+  host: psql14MP
+

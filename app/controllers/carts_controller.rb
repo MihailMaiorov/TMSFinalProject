@@ -6,6 +6,6 @@ class CartsController < ApplicationController
   def destroy
     current_cart.destroy
 
-    render :show
+    render :show, status: :unprocessable_entity
   end
 end

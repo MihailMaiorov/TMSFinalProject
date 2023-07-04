@@ -1,5 +1,5 @@
 module CartsHelper
   def products
-    @products ||= current_items.joins(:product).all
+    @products ||= current_items.includes(:product).all
   end
 end
