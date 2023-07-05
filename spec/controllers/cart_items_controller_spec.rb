@@ -32,6 +32,15 @@ describe CartItemsController, type: :request do
         expect { subject }.to_not change(user.cart.cart_items, :count)
       end
     end
+
+    context 'if user dont sign in' do
+      it 'does not save the items' do
+        subject { post cart_cart_items_path(cart_id: cart.id), params: create_params }
+        sign_out(user)
+
+        expect { subject }.to_not change(user.cart.cart_items, :count)
+      end
+    end
   end
 
   describe 'DELETE #destroy' do
@@ -42,7 +51,6 @@ describe CartItemsController, type: :request do
     it 'delete product from item' do
       expect { subject }.to change(user.cart.cart_items, :count).by(-1)
     end
-
   end
 
   it 'get all products in cart' do

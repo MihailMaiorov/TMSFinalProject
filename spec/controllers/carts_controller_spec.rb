@@ -23,12 +23,10 @@ describe CartsController, type: :request do
 
     context 'delete from cart' do
       it 'delete product from cart' do
-
         expect { subject }.to change { user.reload.cart.present? }.to(false)
       end
 
       it 'delete product from cart_items' do
-
         expect { subject }.to change(user.cart.cart_items, :count).by(-1)
       end
 
