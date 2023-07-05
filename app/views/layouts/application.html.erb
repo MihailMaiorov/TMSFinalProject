@@ -13,6 +13,10 @@
 
   <body>
 
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
     <header class="p-3 bg-dark text-white">
 
       <nav class="navbar navbar-default">
@@ -24,16 +28,14 @@
 
             <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
               <li class="dropdown">
-                <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
-                  data: {"bs-toggle": 'dropdown'} do %>
-                  <%= tag.div '', class: "flag #{t('.categories')}-flag mt-1" %>
-                  <%= t('.categories') %>
-                <% end %>
+                <a class="nav-link px-2 dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= t('.categories') %>
+                </a>
 
-                <ul class="dropdown-menu">
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <% Category.all.each do |category| %>
                     <li>
-                      <%= link_to category.title, products_path(category: category.title), class: "link" %>
+                      <%= link_to category.title, products_path(category: category.title), class: 'dropdown-item text-black' %>
                     </li>
                   <% end %>
                 </ul>
@@ -50,36 +52,51 @@
           <ul class="nav navbar-nav navbar-right">
 
             <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
-              <li class="dropdown">
-                <%= link_to '#', class: 'nav-link px-2 dropdown-toggle text-white',
-                  data: {"bs-toggle": 'dropdown'} do %>
+              <div class="dropdown">
+                <a class="nav-link px-2 dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <%= tag.div '', class: "flag #{I18n.locale}-flag mt-1" %>
                   <%= t I18n.locale %>
-                <% end %>
+                </a>
 
-                <ul class="dropdown-menu">
-                  <% I18n.available_locales.each do |locale| %>
-                    <li>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">
+                    <% I18n.available_locales.each do |locale| %>
                       <% if I18n.locale == locale %>
                         <%= tag.span t(locale), class: 'dropdown-item' %>
                       <% else %>
-                        <%= link_to t(locale), url_for(locale: locale),
-                          class: 'dropdown-item' %>
+                        <%= link_to t(locale), url_for(locale: locale), class: 'dropdown-item' %>
                       <% end %>
-                    </li>
-                  <% end %>
+                    <% end %>
+                  </a>
                 </ul>
-              </li>
+              </div>
             </ul>
 
             <% if user_signed_in? %>
-              <%= current_user.email %>
+              <ul class="nav col-12 col-lg-auto mb-2 mb-md-0">
+                <li class="dropdown">
+                  <a class="nav-link px-2 dropdown-toggle text-white" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <%= current_user.email %>
+                  </a>
+
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <li>
+                      <a class="dropdown-item" href="#">
+                        <%= link_to t('global.button.edit_user'), edit_user_registration_path, class: 'dropdown-item text-black' %>
+                        <%= link_to t('global.button.show'), user_path(current_user), data: { 'turbo-method': :delete }, class: 'dropdown-item text-black' %>
+                      </a>
+                    </li>
+                  </ul>
+
+                </li>
+              </ul>
+
               <% if cart_total.positive? %>
-                <%= link_to "#{cart_total} products", cart_path(current_cart) %>
+                <%= link_to "Cart (#{cart_total})", cart_path(current_cart), class: 'btn btn-info' %>
               <% else %>
-                <%= link_to 'Empty Cart', cart_path(current_cart) %>
+                <%= link_to 'Empty Cart', cart_path(current_cart), class: 'btn btn-info' %>
               <% end %>
-              <%= link_to t('global.button.edit_user'), edit_user_registration_path, class: 'btn btn-secondary' %>
+
               <%= link_to t('global.button.log_out'), destroy_user_session_path, data: { 'turbo-method': :delete }, class: 'btn btn-danger' %>
             <% else %>
               <%= link_to t('global.button.log_in'), new_user_session_path, class: 'btn btn-secondary' %>
