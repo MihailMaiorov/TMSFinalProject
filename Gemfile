@@ -78,7 +78,7 @@ end
 
 gem 'activeadmin'
 gem 'activestorage-validator'
-gem 'bootstrap'
+gem 'bootstrap-sass'
 gem 'cssbundling-rails'
 gem 'devise'
 gem 'jquery-rails'

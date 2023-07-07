@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload", media: 'all' %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "turbo", type: "module" %>
   </head>
 
   <body>
@@ -80,24 +80,26 @@
                   </a>
 
                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li>
                       <a class="dropdown-item" href="#">
+                        <%= link_to t('global.button.show'), user_path(current_user), class: 'dropdown-item text-black' %>
                         <%= link_to t('global.button.edit_user'), edit_user_registration_path, class: 'dropdown-item text-black' %>
-                        <%= link_to t('global.button.show'), user_path(current_user), data: { 'turbo-method': :delete }, class: 'dropdown-item text-black' %>
-                      </a>
-                    </li>
-                  </ul>
+                        <%= link_to t('global.button.log_out'), destroy_user_session_path, data: { 'turbo-method': :delete }, class: 'dropdown-item text-black' %>
 
+                      </a>
+                  </ul>
                 </li>
               </ul>
 
               <% if cart_total.positive? %>
+
+              <div>
                 <%= link_to "Cart (#{cart_total})", cart_path(current_cart), class: 'btn btn-info' %>
               <% else %>
                 <%= link_to 'Empty Cart', cart_path(current_cart), class: 'btn btn-info' %>
               <% end %>
 
-              <%= link_to t('global.button.log_out'), destroy_user_session_path, data: { 'turbo-method': :delete }, class: 'btn btn-danger' %>
+              </div>
+
             <% else %>
               <%= link_to t('global.button.log_in'), new_user_session_path, class: 'btn btn-secondary' %>
               <%= link_to t('.registration'), new_user_registration_path, class: 'btn btn-secondary' %>
