@@ -10,7 +10,7 @@
     "controllers": "^0.0.2",
     "esbuild": "^0.18.11",
     "nodemon": "^2.0.22",
-    "postcss": "^8.4.24",
+    "postcss": "^8.4.25",
     "postcss-cli": "^10.1.0",
     "sass": "^1.63.6"
   },
@@ -26,7 +26,7 @@
   },
   "scripts": {
     "build:css:dev": "sass --style compressed ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
-    "build:css": "yarn build:css:compile && yarn build:css:prefix",
+    "build:css": "yarn build:css:compile && yarn build:css:prefix && yarn build:css:dev",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
     "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
     "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\"",

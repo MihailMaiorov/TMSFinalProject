@@ -48,7 +48,7 @@
 
     <% if policy(@product).update? %>
       <%= link_to t('global.button.edit'), edit_product_path(@product), class: 'btn btn-secondary'%> |
-      <%= link_to t('global.button.delete'), change_status_product_path(@product), class: 'btn btn-danger',
+      <%= button_to t('global.button.delete'), change_status_product_path(@product), class: 'btn btn-danger',
         data: { turbo_method: :post, turbo_confirm: t('dialog.you_sure') } %>
     <% end %>
 
