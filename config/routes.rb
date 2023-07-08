@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       resources :cart_items, only: %i[destroy create]
     end
 
+    get 'search', to: 'products#search'
+
     root 'pages#index'
 
     mount Sidekiq::Web => '/sidekiq'

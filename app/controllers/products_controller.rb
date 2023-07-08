@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  class BadProductRequest < StandardError; end
   before_action :set_product, only: %i[edit update show destroy change_status]
   before_action :set_categories, only: %i[new edit create]
   before_action :authenticate_user!, only: %i[edit create update new destroy]
@@ -54,7 +55,18 @@ class ProductsController < ApplicationController
     redirect_to products_path, notice: t('.success')
   end
 
+  def search
+    @products = Product.where('name LIKE ?', "%#{params[:query]}%")
+
+  end
+
   private
+
+  def make_search_request(query)
+    raise BadProductRequest, 'Query must be minimum 3 letters' if params[:query].nil? || params[:query].size < 3
+
+    Product.where('name LIKE ?', "%#{query}%")
+  end
 
   def set_categories
     @categories = Category.all.map { |c| [c.title, c.id] }
