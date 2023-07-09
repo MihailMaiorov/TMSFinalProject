@@ -1,6 +1,6 @@
-<h1>search</h1>
+<h1>search result: <%= @search_result.count %></h1>
       <div id="products">
-        <% @products.each do |product| %>
+        <% @search_result.each do |product| %>
           <article class="card mt-3">
             <div class="card-body">
               <h4><%= product.name %><h4>
