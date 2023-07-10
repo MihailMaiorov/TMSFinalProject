@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
-  before_action :set_reviewable
-  before_action :set_review, only: %i[edit update archive]
+  # before_action :set_reviewable
+  # before_action :set_review, only: %i[edit update archive]
   after_action :send_mail, only: :create
 
   def edit
@@ -20,6 +20,8 @@ class ReviewsController < ApplicationController
   end
 
   def update
+    @review = @reviewable.reviews.find(params[:id])
+
     authorize @review
 
     if @review.update(review_update_params)
@@ -43,11 +45,11 @@ class ReviewsController < ApplicationController
     @review = @reviewable.reviews.find(params[:id])
   end
 
-  def set_reviewable
-    return @reviewable = Product.find(params[:product_id]) if params[:product_id]
+  # def set_reviewable
+  #   return @reviewable = Product.find(params[:product_id]) if params[:product_id]
 
-    @reviewable = User.find(params[:user_id]) if params[:user_id]
-  end
+  #   @reviewable = User.find(params[:user_id]) if params[:user_id]
+  # end
 
   def review_update_params
     params.require(:review).permit(:rating, :comment)

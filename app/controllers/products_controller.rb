@@ -68,7 +68,7 @@ class ProductsController < ApplicationController
   def make_search_request(query)
     raise BadProductRequest, 'Query must be minimum 3 letters' if query.nil? || query.size < 3
 
-    Product.where('name LIKE ?', "%#{query}%")
+    Product.where('name ILIKE ?', "%#{query}%")
   end
 
   def set_categories

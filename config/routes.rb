@@ -7,12 +7,18 @@ Rails.application.routes.draw do
 
     devise_for :users, controllers: { registrations: 'users/registrations' }
 
-    resources :products, :users do
-      resources :reviews do
+    resources :products do
+      resources :reviews, module: :products do
         post :archive, on: :member
       end
 
       post :change_status, on: :member
+    end
+
+    resources :users do
+      resources :reviews, module: :users do
+        post :archive, on: :member
+      end
     end
 
     resources :carts, only: %i[destroy show] do

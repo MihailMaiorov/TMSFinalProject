@@ -8,6 +8,6 @@ class ReviewPolicy < ApplicationPolicy
   end
 
   def archive?
-    user.has_role?(:user)
+    user.has_role?(:user) && record.user_id == user.id
   end
 end
