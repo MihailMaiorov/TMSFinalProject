@@ -5,7 +5,7 @@ module Users
     def create
       super do |user|
         if user.persisted?
-          UserMailer.perform(user).deliver_later
+          Users::Greetings::SendMailWorker.perform_async(user.id)
           user.add_role(params[:role]) if params[:role].present?
         end
       end
