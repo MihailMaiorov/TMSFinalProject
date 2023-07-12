@@ -1,9 +1,7 @@
 class ReviewsController < ApplicationController
-  # before_action :set_reviewable
-  # before_action :set_review, only: %i[edit update archive]
-  after_action :send_mail, only: :create
-
   def edit
+    @review = @reviewable.reviews.find(params[:id])
+
     authorize @review
   end
 
@@ -13,6 +11,8 @@ class ReviewsController < ApplicationController
     authorize @review
 
     if @review.save
+      send_mail
+
       redirect_to polymorphic_url(@reviewable)
     else
       render 'pages/index', status: :unprocessable_entity
@@ -32,6 +32,8 @@ class ReviewsController < ApplicationController
   end
 
   def archive
+    @review = @reviewable.reviews.find(params[:id])
+
     authorize @review
 
     @review.update!(archived: true)
@@ -44,12 +46,6 @@ class ReviewsController < ApplicationController
   def set_review
     @review = @reviewable.reviews.find(params[:id])
   end
-
-  # def set_reviewable
-  #   return @reviewable = Product.find(params[:product_id]) if params[:product_id]
-
-  #   @reviewable = User.find(params[:user_id]) if params[:user_id]
-  # end
 
   def review_update_params
     params.require(:review).permit(:rating, :comment)

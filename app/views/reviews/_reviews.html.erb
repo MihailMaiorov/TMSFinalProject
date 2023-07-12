@@ -25,8 +25,8 @@
 
     <% if user_signed_in? %>
       <% if policy(review).update? %>
-        <%= link_to t('global.button.edit'), edit_product_review_path(reviewable, review), class: 'btn btn-secondary'%> |
-        <%= link_to t('global.button.delete'), archive_product_review_path(reviewable, review), class: 'btn btn-danger',
+        <%= link_to t('global.button.edit'), edit_polymorphic_path([reviewable, review]), class: 'btn btn-secondary'%> |
+        <%= link_to t('global.button.delete'), polymorphic_path([reviewable, review], action: :archive), class: 'btn btn-danger',
           data: { turbo_method: :post, turbo_confirm: t('dialog.you_sure') } %>
       <% end %>
     <% end %>
