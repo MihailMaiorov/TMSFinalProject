@@ -96,12 +96,12 @@
                 </li>
               </ul>
 
-              <% if cart_total.positive? %>
+              <% if current_items_total.positive? %>
 
               <div>
-                <%= link_to "Cart (#{cart_total})", cart_path(current_cart), class: 'btn btn-info' %>
+                <%= link_to "Cart (#{current_items_total})", cart_item_path(current_user), class: 'btn btn-info' %>
               <% else %>
-                <%= link_to 'Empty Cart', cart_path(current_cart), class: 'btn btn-info' %>
+                <%= link_to 'Empty Cart', cart_item_path(current_user), class: 'btn btn-info' %>
               <% end %>
 
               </div>

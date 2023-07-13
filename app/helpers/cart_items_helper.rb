@@ -1,4 +1,4 @@
-module CartsHelper
+module CartItemsHelper
   def products
     @products ||= current_items.includes(:product).all
   end

@@ -21,9 +21,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :carts, only: %i[destroy show] do
-      resources :cart_items, only: %i[destroy create]
-    end
+    resources :cart_items, only: %i[destroy create show]
 
     get 'search', to: 'products#search'
 

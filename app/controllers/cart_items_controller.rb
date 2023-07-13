@@ -1,15 +1,15 @@
 class CartItemsController < ApplicationController
-  include CartsHelper
+  include CartItemsHelper
   before_action :product, only: :create
 
   def create
-    current_cart.cart_items.create(item_params)
+    current_user.cart_items.create(item_params)
     redirect_to product_path(@product)
   end
 
   def destroy
     current_items.find(params[:id]).destroy
-    render 'carts/show', status: :unprocessable_entity
+    render 'cart_items/show', status: :unprocessable_entity
   end
 
   private
