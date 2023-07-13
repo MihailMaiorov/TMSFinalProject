@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
     authorize @review
 
     if @review.save
-      send_mail
+      send_mail(@reviewable, @review, current_user)
 
       redirect_to polymorphic_url(@reviewable)
     else
@@ -55,7 +55,16 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(:rating, :comment).merge(user_id: current_user.id)
   end
 
-  def send_mail
-    ReviewMailer.perform(@reviewable, @review, current_user).deliver_later
+  def send_mail(reviewable, review, current_user)
+    reviewable_id = if reviewable.instance_of?(User)
+                      reviewable.id
+                    else
+                      reviewable.user_id
+                    end
+
+    review_id = review.id
+    current_user_id = current_user.id
+
+    Reviews::Notification::SendMailWorker.perform_async(reviewable_id, review_id, current_user_id)
   end
 end
