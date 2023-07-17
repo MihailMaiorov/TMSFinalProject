@@ -72,7 +72,7 @@ class ProductsController < ApplicationController
   end
 
   def set_categories
-    @categories = Category.all.map { |c| [c.title, c.id] }
+    @categories = Category.pluck(:title, :id)
   end
 
   def set_product

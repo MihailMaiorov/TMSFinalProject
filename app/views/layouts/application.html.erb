@@ -40,9 +40,9 @@
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <% Category.all.each do |category| %>
+                  <% Category.pluck(:title).each do |title| %>
                     <li>
-                      <%= link_to category.title, products_path(category: category.title), class: 'dropdown-item text-black' %>
+                      <%= link_to title, products_path(category: title), class: 'dropdown-item text-black' %>
                     </li>
                   <% end %>
                 </ul>

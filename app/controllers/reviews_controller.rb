@@ -56,12 +56,7 @@ class ReviewsController < ApplicationController
   end
 
   def send_mail(reviewable, review, current_user)
-    reviewable_id = if reviewable.instance_of?(User)
-                      reviewable.id
-                    else
-                      reviewable.user_id
-                    end
-
+    reviewable_id = reviewable.instance_of?(User) ? reviewable.id : reviewable.user_id
     review_id = review.id
     current_user_id = current_user.id
 
