@@ -367,6 +367,7 @@ DEPENDENCIES
   pundit
   rails (~> 7.0.4)
   rails-i18n
+  ransack
   redis
   rolify
   rspec-rails

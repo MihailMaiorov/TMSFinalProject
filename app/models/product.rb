@@ -17,4 +17,12 @@ class Product < ApplicationRecord
   def formatted_updated_at
     I18n.l updated_at, format: :long
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["category_id", "created_at", "description", "id", "name", "price", "status", "updated_at", "user_id"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["category", "pictures_attachments", "pictures_blobs", "reviews", "user"]
+  end
 end
