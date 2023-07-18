@@ -1,3 +1,4 @@
-ActiveAdmin.register User do
+# frozen_string_literal: true
 
+ActiveAdmin.register User do
 end

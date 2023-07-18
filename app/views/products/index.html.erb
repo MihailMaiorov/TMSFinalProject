@@ -1,15 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render 'sort_form' %>
+<%= render 'search_form' %>
 
-<table>
+<table class="table table-hover table-striped">
   <thead>
     <tr>
+      <th><%= sort_link(@q, :category_title, 'Category', default_order: :asc) %></th>
       <th><%= sort_link(@q, :name, 'Name', default_order: :asc) %></th>
       <th><%= sort_link(@q, :description, 'Description', default_order: :desc) %></th>
       <th><%= sort_link(@q, :price, 'Price', default_order: :desc) %></th>
       <th><%= sort_link(@q, :updated_at, 'Updated', default_order: :desc) %></th>
-      <th colspan="3"></th>
+      <th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
     </tr>
   </thead>
 </table>
@@ -27,6 +28,10 @@
           <% product.pictures.each do |picture| %>
             <%= link_to image_tag(picture.variant(resize_to_limit: [100, 100])), picture %>
           <% end %>
+        </p>
+
+        <p class="my-2">Category:
+          <%= product.category.title %>
         </p>
 
         <p class="my-2">Price:

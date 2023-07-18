@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductPolicy < ApplicationPolicy
   def update?
     user.has_role?(:seller) && record.user_id == user.id

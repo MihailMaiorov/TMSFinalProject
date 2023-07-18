@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ProductsController < ApplicationController
   class BadProductRequest < StandardError; end
   before_action :set_product, only: %i[edit update show destroy change_status]
@@ -5,15 +7,14 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: %i[edit create update new destroy]
 
   def index
-    @q = Product.ransack(params[:q])
-    @products = @q.result(distinct: true)
+    if params[:category].blank?
+      @q = Product.in_stock.ransack(params[:q])
+    else
+      @category_id = Category.find_by(title: params[:category]).id
+      @q = Product.in_stock.where(category_id: @category_id).ransack(params[:q])
+    end
 
-    # if params[:category].blank?
-    #   @products = Product.in_stock.order(updated_at: :desc)
-    # else
-    #   @category_id = Category.find_by(title: params[:category]).id
-    #   @products = Product.in_stock.where(category_id: @category_id).order(updated_at: :desc)
-    # end
+    @products = @q.result.includes(:category)
   end
 
   def show

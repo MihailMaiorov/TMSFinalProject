@@ -1,9 +1,13 @@
-class Users::ReviewsController < ReviewsController
-  before_action :set_reviewable
+# frozen_string_literal: true
 
-  private
+module Users
+  class ReviewsController < ReviewsController
+    before_action :set_reviewable
 
-  def set_reviewable
-    @reviewable = User.find(params[:user_id])
+    private
+
+    def set_reviewable
+      @reviewable = User.find(params[:user_id])
+    end
   end
 end

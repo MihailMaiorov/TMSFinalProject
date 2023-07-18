@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReviewsController < ApplicationController
   def edit
     @review = @reviewable.reviews.find(params[:id])

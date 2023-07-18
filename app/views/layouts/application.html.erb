@@ -45,13 +45,14 @@
                       <%= link_to title, products_path(category: title), class: 'dropdown-item text-black' %>
                     </li>
                   <% end %>
+                  <%= link_to 'All', products_path(category: nil), class: 'dropdown-item text-black' %>
                 </ul>
               </li>
             </ul>
           </div>
 
           <ul class="nav navbar-nav">
-            <% if user_signed_in? %>
+            <% if user_signed_in? && current_user.has_role?(Role::SELLER) %>
               <li><%= link_to 'Add product', new_product_path, class: 'btn btn-primary' %></li>
             <% end %>
           </ul>

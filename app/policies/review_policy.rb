@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReviewPolicy < ApplicationPolicy
   def update?
     user.has_role?(:user) && record.user_id == user.id

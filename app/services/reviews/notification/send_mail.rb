@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Reviews
   module Notification
     class SendMail

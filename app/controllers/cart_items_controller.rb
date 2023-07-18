@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CartItemsController < ApplicationController
   include CartItemsHelper
   before_action :product, only: :create

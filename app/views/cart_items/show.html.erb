@@ -8,6 +8,7 @@
           <th>Category</th>
           <th>Coutn</th>
           <th>Price</th>
+          <th>Total</th>
           <th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
         </tr>
         </thead>
@@ -22,6 +23,7 @@
             <% pr = item.quantity * item.product.price %>
             <% cost << pr %></td>
             <td><%= item.product.price %></td>
+            <td><%= pr %></td>
             <td><%= link_to 'Delete', cart_item_path(item.id), class: 'btn btn-danger',
               data: { turbo_method: :delete, turbo_confirm: t('dialog.you_sure') } %></td>
             <td>
