@@ -7,14 +7,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: %i[edit create update new destroy]
 
   def index
-    if params[:category].blank?
-      @q = Product.in_stock.ransack(params[:q])
-    else
-      @category_id = Category.find_by(title: params[:category]).id
-      @q = Product.in_stock.where(category_id: @category_id).ransack(params[:q])
-    end
-
-    @products = @q.result.includes(:category)
+    @q, @products = Products::Search.call(category_title: params[:category], q: params[:q])
   end
 
   def show
