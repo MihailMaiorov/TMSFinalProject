@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Reviews
-  module Notification
+  module Notifications
     class SendMailWorker
       include Sidekiq::Worker
 

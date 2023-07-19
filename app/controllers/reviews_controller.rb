@@ -62,6 +62,6 @@ class ReviewsController < ApplicationController
     review_id = review.id
     current_user_id = current_user.id
 
-    Reviews::Notification::SendMailWorker.perform_async(reviewable_id, review_id, current_user_id)
+    Reviews::Notifications::SendMailWorker.perform_async(reviewable_id, review_id, current_user_id)
   end
 end

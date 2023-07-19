@@ -22,8 +22,8 @@
             <td><% amount << item.quantity %><%= item.quantity %></td>
             <% pr = item.quantity * item.product.price %>
             <% cost << pr %></td>
-            <td><%= item.product.price %></td>
-            <td><%= pr %></td>
+            <td><%= item.product.price %> $</td>
+            <td><%= pr %> $</td>
             <td><%= link_to 'Delete', cart_item_path(item.id), class: 'btn btn-danger',
               data: { turbo_method: :delete, turbo_confirm: t('dialog.you_sure') } %></td>
             <td>

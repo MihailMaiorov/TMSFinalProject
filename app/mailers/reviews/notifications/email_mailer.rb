@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Reviews
-  module Notification
+  module Notifications
     class EmailMailer < ApplicationMailer
       def new_review(reviewable_owner, review, user)
         @review = review
