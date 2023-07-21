@@ -12,7 +12,7 @@ FactoryBot.define do
     association :user, factory: :user
 
     comment { 'Botl' }
-    rating { 100 }
+    rating { 5 }
     reviewable_id { reviewable.id }
     reviewable_type { reviewable.class.name }
   end
