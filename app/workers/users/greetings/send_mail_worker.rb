@@ -8,7 +8,9 @@ module Users
       sidekiq_options queue: :mailers
 
       def perform(user_id)
-        SendMail.call(user_id)
+        user = User.find(user_id)
+
+        Users::Greetings::EmailMailer.greeting_mail(user).deliver_now
       end
     end
   end

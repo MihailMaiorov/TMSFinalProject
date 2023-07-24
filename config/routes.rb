@@ -15,6 +15,10 @@ Rails.application.routes.draw do
       end
 
       post :change_status, on: :member
+
+      collection do
+        get :search, path: 'search'
+      end
     end
 
     resources :users do
@@ -24,8 +28,6 @@ Rails.application.routes.draw do
     end
 
     resources :cart_items, only: %i[destroy create show]
-
-    get 'search', to: 'products#search'
 
     root 'pages#index'
 
