@@ -11,3 +11,5 @@ if Rails.env.development?
   AdminUser.create!(email: 'admin@example.com', password: 'password',
                     password_confirmation: 'password')
 end
+
+%w[Books Cars Sport].each { |category_title| Category.careate!(title: category_title) }
