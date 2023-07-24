@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+class CartItem < ApplicationRecord
+  belongs_to :product
+  belongs_to :user
+
+  validates :quantity, presence: true, numericality: { greater_than: 0 }
+  validates :user_id, presence: true
+end

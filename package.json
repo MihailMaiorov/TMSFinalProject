@@ -1,0 +1,36 @@
+{
+  "name": "app",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@hotwired/turbo-rails": "^7.3.0",
+    "@popperjs/core": "^2.11.8",
+    "autoprefixer": "^10.4.14",
+    "bootstrap": "^5.3.0",
+    "bootstrap-icons": "^1.10.5",
+    "controllers": "^0.0.2",
+    "esbuild": "^0.18.11",
+    "nodemon": "^2.0.22",
+    "postcss": "^8.4.25",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.63.6"
+  },
+  "version": "1.0.1",
+  "browserslist": [
+    "defaults",
+    "defaults"
+  ],
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
+  "scripts": {
+    "build:css:dev": "sass --style compressed ./app/assets/stylesheets/application.bootstrap.scss ./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "build:css": "yarn build:css:compile && yarn build:css:prefix && yarn build:css:dev",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
+    "build:css:compile": "sass ./app/assets/stylesheets/application.bootstrap.scss:./app/assets/builds/application.css --no-source-map --load-path=node_modules",
+    "watch:css": "nodemon --watch ./app/assets/stylesheets/ --ext scss --exec \"yarn build:css\"",
+    "build:css:prefix": "postcss ./app/assets/builds/application.css --use=autoprefixer --output=./app/assets/builds/application.css"
+  },
+  "packageManager": "yarn@3.6.0"
+}

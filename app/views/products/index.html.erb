@@ -1,0 +1,54 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render 'search_form' %>
+
+<table class="table table-hover table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link(@q, :category_title, 'Category', default_order: :asc) %></th>
+      <th><%= sort_link(@q, :name, 'Name', default_order: :asc) %></th>
+      <th><%= sort_link(@q, :description, 'Description', default_order: :desc) %></th>
+      <th><%= sort_link(@q, :price, 'Price', default_order: :desc) %></th>
+      <th><%= sort_link(@q, :updated_at, 'Updated', default_order: :desc) %></th>
+      <th><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
+    </tr>
+  </thead>
+</table>
+
+<h1 class="current_category"><%= params[:category] %></h1>
+
+<div id="products">
+  <% @products.each do |product| %>
+ <article class="card mt-3">
+    <div class="card-body">
+      <h4><%= product.name %><h4>
+
+      <section class="card-text">
+        <p>
+          <% product.pictures.each do |picture| %>
+            <%= link_to image_tag(picture.variant(resize_to_limit: [100, 100])), picture %>
+          <% end %>
+        </p>
+
+        <p class="my-2">Category:
+          <%= product.category.title %>
+        </p>
+
+        <p class="my-2">Price:
+          <%= product.price %>
+        </p>
+
+        <p class="my-2">
+          <%= product.description %>
+        </p>
+
+        <time datetime="<%= product.formatted_updated_at %>">
+          <small><%= product.formatted_updated_at %></small>
+        <time>
+      </section>
+
+      <%= link_to t('global.button.show'), product_path(product), class: 'btn btn-info btn-sm' %>
+    </div>
+  </article>
+  <% end %>
+</div>

@@ -1,0 +1,39 @@
+    <p class="lead my-3">Add reviews</p>
+
+    <%= form_with(model: [@reviewable, @review]) do |form| %>
+      <% if @reviewable.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(@reviewable.errors.count, "error") %> prohibited this reviewable from being saved:</h2>
+
+          <ul>
+            <% @reviewable.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="md-3 row">
+        <div class="col-sm-2 col-form-label">
+          <%= form.label :comment %>
+        </div>
+
+        <div class="col-sm-10">
+          <%= form.text_area :comment, placeholder: 'Text', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div class="md-3 row">
+        <div class="col-sm-2 col-form-label">
+          <%= form.label :rating %>
+        </div>
+
+        <div class="col-sm-10">
+          <%= form.text_field :rating, placeholder: 'Rating', class: 'form-control' %>
+        </div>
+      </div>
+
+      <div>
+        <%= form.submit t('global.button.submit'), class: 'btn btn-primary' %>
+      </div>
+    <% end %>

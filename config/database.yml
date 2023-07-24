@@ -20,10 +20,16 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  host: <%= ENV['RAILS_POSTGRES_HOST'] || '127.0.0.1' %>
+  port: 5434
 
 development:
   <<: *default
   database: Marketplace_development
+  username: mihail
+  password: 111111
+  port: 5434
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -58,6 +64,9 @@ development:
 test:
   <<: *default
   database: Marketplace_test
+  username: mihail
+  password: 111111
+  port: 5434
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -82,5 +91,8 @@ test:
 production:
   <<: *default
   database: Marketplace_production
-  username: Marketplace
-  password: <%= ENV["MARKETPLACE_DATABASE_PASSWORD"] %>
+  username: mihail
+  password: 111111
+  port: 5432
+  host: psql14MP
+

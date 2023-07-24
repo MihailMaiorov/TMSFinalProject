@@ -1,0 +1,33 @@
+  <% @reviews.each do |review| %>
+    <article class="card mt-3">
+      <div class="card-body">
+
+        <p class="my-2">
+          Rating: <%= review.rating %>
+        </p>
+
+        <p class="my-3">
+          Text: <%= review.comment %>
+        </p>
+
+        <p class="lead my-3">
+            <time datetime="<%= review.formatted_updated_at %>">
+              <%= review.formatted_updated_at %>
+            <time>
+        </p>
+
+        <p class="my-2">
+          Author: <%= review.user.email %>
+        </p>
+
+      </div>
+    </article>
+
+    <% if user_signed_in? %>
+      <% if policy(review).update? %>
+        <%= link_to t('global.button.edit'), edit_polymorphic_path([reviewable, review]), class: 'btn btn-secondary'%> |
+        <%= link_to t('global.button.delete'), polymorphic_path([reviewable, review], action: :archive), class: 'btn btn-danger',
+          data: { turbo_method: :post, turbo_confirm: t('dialog.you_sure') } %>
+      <% end %>
+    <% end %>
+  <% end %>
