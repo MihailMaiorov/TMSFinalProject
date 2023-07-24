@@ -21,6 +21,6 @@ class User < ApplicationRecord
   private
 
   def assign_default_role
-    add_role(Role::USER) if roles.blank?
+    add_role(Role::USER)
   end
 end
