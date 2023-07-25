@@ -13,7 +13,7 @@ class ReviewsController < ApplicationController
     authorize @review
 
     if @review.save
-      reviewable_id = reviewable.instance_of?(User) ? reviewable.id : reviewable.user_id
+      reviewable_id = @reviewable.instance_of?(User) ? @reviewable.id : @reviewable.user_id
 
       Reviews::Notifications::SendMailWorker.perform_async(reviewable_id, @review.id, current_user.id)
 
