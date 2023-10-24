@@ -1,6 +1,8 @@
 <p class="lead my-3">
   <% if @user.avatar.attached? %>
     <%= image_tag( @user.avatar.variant(resize_and_pad: [200, 200])) %>
+  <% else %>
+    <%= image_tag(current_user.avatar_url) %>
   <% end %>
 </p>
 

@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, only: %i[edit create update new destroy]
 
   def index
-    @q, @products = Products::Search.call(category_title: params[:category], q: params[:q])
+    @result, @products = Products::Search.call(category_title: params[:category], query: params[:q])
   end
 
   def show

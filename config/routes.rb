@@ -3,11 +3,17 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  devise_for :users, skip: %i[session password registration],
+                     controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
+
   scope '(:locale)', locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :admin_users, ActiveAdmin::Devise.config
     ActiveAdmin.routes(self)
 
-    devise_for :users, controllers: { registrations: 'users/registrations' }
+    devise_for :users, skip: [:omniauth_callbacks], controllers: {
+      registrations: 'users/registrations',
+      sessions: 'users/sessions'
+    }
 
     resources :products do
       resources :reviews, module: :products do
@@ -15,6 +21,10 @@ Rails.application.routes.draw do
       end
 
       post :change_status, on: :member
+
+      collection do
+        get :search, path: 'search'
+      end
     end
 
     resources :users do
@@ -24,8 +34,6 @@ Rails.application.routes.draw do
     end
 
     resources :cart_items, only: %i[destroy create show]
-
-    get 'search', to: 'products#search'
 
     root 'pages#index'
 

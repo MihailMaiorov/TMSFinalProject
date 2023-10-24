@@ -22,8 +22,8 @@ describe UsersController, type: :request do
   describe 'DELETE #destroy' do
     subject { delete cart_item_path(id: cart_item.id) }
 
-    context 'delete from cart' do
-      it 'delete product from cart' do
+    context 'delete from user' do
+      it 'delete product from user' do
         expect { subject }.to change { user.reload.cart_items.present? }.to(false)
       end
 
