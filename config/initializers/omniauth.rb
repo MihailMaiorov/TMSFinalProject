@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'devise/omniauth'
 # Work around for bug when scoping paths
 # See: https://github.com/spree/spree_social/issues/130
